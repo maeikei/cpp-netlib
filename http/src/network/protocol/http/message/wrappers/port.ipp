@@ -22,9 +22,9 @@ port_wrapper::operator boost:: uint16_t() const {
   if (!optional_port) {
     auto scheme_ = uri_.scheme();
     assert(scheme_);
-    if (*scheme_ == "http") {
+    if (*scheme_ == boost::string_ref("http")) {
       return 80u;
-    } else if (*scheme_ == "https") {
+    } else if (*scheme_ == boost::string_ref("https")) {
       return 443u;
     }
   }
