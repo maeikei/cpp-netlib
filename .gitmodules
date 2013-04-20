@@ -3,7 +3,7 @@
 	url = git://github.com/cpp-netlib/gtest
 [submodule "uri"]
 	path = uri
-	url = git://github.com/cpp-netlib/uri
+	url = git@github.com:maeikei/uri.git
 [submodule "deps/gmock"]
 	path = deps/gmock
 	url = git://github.com/cpp-netlib/gmock
