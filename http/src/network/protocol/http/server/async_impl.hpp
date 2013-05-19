@@ -14,9 +14,14 @@
 #include <network/protocol/http/server/impl/socket_options_setter.hpp>
 
 namespace network {
-namespace utils {
-struct thread_pool;
-}  // namespace util
+    namespace concurrency {
+        struct thread_pool;
+    }  // namespace concurrency
+    
+    namespace utils {
+        typedef ::network::concurrency::thread_pool thread_pool;
+    }  // namespace utils
+    
 }  // namespace network
 
 namespace network {

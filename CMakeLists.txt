@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 2.8)
 project(CPP-NETLIB)
 
 option( CPP-NETLIB_BUILD_SHARED_LIBS "Build cpp-netlib as shared libraries." OFF )
-option( CPP-NETLIB_BUILD_SINGLE_LIB "Build cpp-netlib into a single library" OFF )
+option( CPP-NETLIB_BUILD_SINGLE_LIB "Build cpp-netlib into a single library" ON )
 option( CPP-NETLIB_BUILD_TESTS "Build the unit tests." OFF )
 option( CPP-NETLIB_BUILD_EXAMPLES "Build the examples using cpp-netlib." OFF )
 option( CPP-NETLIB_ALWAYS_LOGGING "Allow cpp-netlib to log debug messages even in non-debug mode." OFF )
@@ -164,4 +164,9 @@ if(CPP-NETLIB_BUILD_SINGLE_LIB)
     ${CPP-NETLIB_CONCURRENCY_SRCS}
   )
   target_link_libraries(cppnetlib ${Boost_LIBRARIES})
+  install(
+    TARGETS
+    cppnetlib
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
 endif()
