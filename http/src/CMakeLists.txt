@@ -44,6 +44,12 @@ if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
   target_link_libraries(cppnetlib-http-message
     ${Boost_LIBRARIES}
     cppnetlib-message)
+  install(
+    TARGETS
+    cppnetlib-http-message
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
+
 endif()
 foreach (src_file ${CPP-NETLIB_HTTP_MESSAGE_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -58,6 +64,11 @@ endforeach(src_file)
 set(CPP-NETLIB_HTTP_MESSAGE_WRAPPERS_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/http/message/wrappers.cpp)
 if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
   add_library(cppnetlib-http-message-wrappers ${CPP-NETLIB_HTTP_MESSAGE_WRAPPERS_SRCS})
+  install(
+    TARGETS
+    cppnetlib-http-message-wrappers
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
 endif()
 foreach (src_file ${CPP-NETLIB_HTTP_MESSAGE_WRAPPERS_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -69,59 +80,6 @@ elseif (${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
 endif()
 endforeach(src_file)
 
-#set(CPP-NETLIB_HTTP_SERVER_PARSERS_SRCS server_request_parsers_impl.cpp)
-#add_library(cppnetlib-http-server-parsers ${CPP-NETLIB_HTTP_SERVER_PARSERS_SRCS})
-#foreach (src_file ${CPP-NETLIB_HTTP_SERVER_PARSERS_SRCS})
-#if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
-#    set_source_files_properties(${src_file}
-#        PROPERTIES COMPILE_FLAGS ${CPP-NETLIB_CXXFLAGS})
-#elseif (${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
-#    set_source_files_properties(${src_file}
-#        PROPERTIES COMPILE_FLAGS ${CPP-NETLIB_CXXFLAGS})
-#endif()
-#endforeach(src_file)
-#
-#set(CPP-NETLIB_HTTP_SERVER_SRCS
-#    http/server_async_impl.cpp
-#    http/server_options.cpp
-#    http/server_socket_options_setter.cpp
-#    http/server_sync_impl.cpp
-#    )
-#add_library(cppnetlib-http-server ${CPP-NETLIB_HTTP_SERVER_SRCS})
-#add_dependencies(cppnetlib-http-server
-#  ${CPP-NETLIB_LOGGING_LIB}
-#  cppnetlib-constants
-#  cppnetlib-uri
-#  cppnetlib-message
-#  cppnetlib-message-wrappers
-#  cppnetlib-message-directives
-#  cppnetlib-http-message
-#  cppnetlib-http-message-wrappers
-#  cppnetlib-http-server-parsers
-#  cppnetlib-utils-thread_pool
-#  )
-#target_link_libraries(cppnetlib-http-server
-#  ${Boost_LIBRARIES}
-#  ${CPP-NETLIB_LOGGING_LIB}
-#  cppnetlib-constants
-#  cppnetlib-uri
-#  cppnetlib-message
-#  cppnetlib-message-wrappers
-#  cppnetlib-message-directives
-#  cppnetlib-http-message
-#  cppnetlib-http-message-wrappers
-#  cppnetlib-http-server-parsers
-#  cppnetlib-utils-thread_pool
-#  )
-#foreach (src_file ${CPP-NETLIB_HTTP_SERVER_SRCS})
-#if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
-#    set_source_files_properties(${src_file}
-#        PROPERTIES COMPILE_FLAGS ${CPP-NETLIB_CXXFLAGS})
-#elseif (${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
-#    set_source_files_properties(${src_file}
-#        PROPERTIES COMPILE_FLAGS ${CPP-NETLIB_CXXFLAGS})
-#endif()
-#endforeach(src_file)
 
 set(CPP-NETLIB_HTTP_CLIENT_CONNECTIONS_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/http/client_connections.cpp
@@ -136,6 +94,11 @@ set(CPP-NETLIB_HTTP_CLIENT_CONNECTIONS_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/http/client_connection_normal.cpp)
 if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
   add_library(cppnetlib-http-client-connections ${CPP-NETLIB_HTTP_CLIENT_CONNECTIONS_SRCS})
+  install(
+    TARGETS
+    cppnetlib-http-client-connections
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
 endif()
 foreach (src_file ${CPP-NETLIB_HTTP_CLIENT_CONNECTIONS_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -174,6 +137,12 @@ if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
     cppnetlib-http-message-wrappers
     cppnetlib-http-client-connections
     )
+  install(
+    TARGETS
+    cppnetlib-http-client
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
+
 endif()
 foreach (src_file ${CPP-NETLIB_HTTP_CLIENT_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -188,6 +157,12 @@ endforeach(src_file)
 set(CPP-NETLIB_CONSTANTS_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/constants.cpp)
 if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
   add_library(cppnetlib-constants ${CPP-NETLIB_CONSTANTS_SRCS})
+  install(
+    TARGETS
+    cppnetlib-constants
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
+
 endif()
 foreach (src_file ${CPP-NETLIB_CONSTANTS_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -206,3 +181,9 @@ set(CPP-NETLIB_HTTP_MESSAGE_WRAPPERS_SRCS ${CPP-NETLIB_HTTP_MESSAGE_WRAPPERS_SRC
 set(CPP-NETLIB_HTTP_CLIENT_CONNECTIONS_SRCS ${CPP-NETLIB_HTTP_CLIENT_CONNECTIONS_SRCS} PARENT_SCOPE)
 set(CPP-NETLIB_HTTP_CLIENT_SRCS ${CPP-NETLIB_HTTP_CLIENT_SRCS} PARENT_SCOPE)
 set(CPP-NETLIB_CONSTANTS_SRCS ${CPP-NETLIB_CONSTANTS_SRCS} PARENT_SCOPE)
+
+
+install(DIRECTORY network
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+)
+

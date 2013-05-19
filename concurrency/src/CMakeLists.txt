@@ -19,6 +19,12 @@ endif()
 set(CPP-NETLIB_CONCURRENCY_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/thread_pool.cpp)
 if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
   add_library(cppnetlib-concurrency ${CPP-NETLIB_CONCURRENCY_SRCS})
+  install(
+    TARGETS
+    cppnetlib-concurrency
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
+
 endif()
 foreach (src_file ${CPP-NETLIB_CONCURRENCY_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -32,3 +38,7 @@ endforeach(src_file)
 
 # propagate sources to parent directory for one-lib-build
 set(CPP-NETLIB_CONCURRENCY_SRCS ${CPP-NETLIB_CONCURRENCY_SRCS} PARENT_SCOPE)
+
+install(DIRECTORY network
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+)

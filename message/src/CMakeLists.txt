@@ -21,6 +21,12 @@ if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
   add_library(cppnetlib-message ${CPP-NETLIB_MESSAGE_SRCS})
   add_dependencies(cppnetlib-message cppnetlib-uri)
   target_link_libraries(cppnetlib-message cppnetlib-uri)
+  install(
+    TARGETS
+    cppnetlib-message
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+    )
+
 endif()
 foreach (src_file ${CPP-NETLIB_MESSAGE_SRCS})
 if (${CMAKE_CXX_COMPILER_ID} MATCHES GNU)
@@ -64,3 +70,8 @@ endforeach(src_file)
 set(CPP-NETLIB_MESSAGE_SRCS ${CPP-NETLIB_MESSAGE_SRCS} PARENT_SCOPE)
 set(CPP-NETLIB_MESSAGE_DIRECTIVES_SRCS ${CPP-NETLIB_MESSAGE_DIRECTIVES_SRCS} PARENT_SCOPE)
 set(CPP-NETLIB_MESSAGE_WRAPPERS_SRCS ${CPP-NETLIB_MESSAGE_WRAPPERS_SRCS} PARENT_SCOPE)
+
+install(DIRECTORY network
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+)
+
