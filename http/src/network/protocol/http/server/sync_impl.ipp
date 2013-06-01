@@ -7,7 +7,6 @@
 #ifndef NETWORK_PROTOCOL_HTTP_SERVER_SYNC_IMPL_IPP_20120319
 #define NETWORK_PROTOCOL_HTTP_SERVER_SYNC_IMPL_IPP_20120319
 
-#include <boost/bind.hpp>
 #include <network/protocol/http/server/sync_impl.hpp>
 #include <network/protocol/http/server/connection/sync.hpp>
 #include <network/detail/debug.hpp>
@@ -59,7 +58,7 @@ void sync_server_impl::handle_accept(boost::system::error_code const& ec) {
     new_connection_->start();
     new_connection_.reset(new sync_server_connection(*service_, handler_));
     acceptor_->async_accept(new_connection_->socket(),
-                            boost::bind(&sync_server_impl::handle_accept,
+                            std::bind(&sync_server_impl::handle_accept,
                                         this,
                                         boost::asio::placeholders::error));
   } else {
@@ -109,7 +108,7 @@ void sync_server_impl::start_listening() {
   }
   new_connection_.reset(new sync_server_connection(*service_, handler_));
   acceptor_->async_accept(new_connection_->socket(),
-                          boost::bind(&sync_server_impl::handle_accept,
+                          std::bind(&sync_server_impl::handle_accept,
                                       this,
                                       boost::asio::placeholders::error));
   listening_ = true;

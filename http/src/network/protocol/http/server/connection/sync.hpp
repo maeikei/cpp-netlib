@@ -28,7 +28,7 @@
 #include <boost/array.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
-#include <functional>
+//#include <functional>
 #include <mutex>
 
 namespace network {

@@ -7,13 +7,14 @@
 #ifndef NETWORK_PROTOCOL_HTTP_SERVER_IMPL_HPP_20120318
 #define NETWORK_PROTOCOL_HTTP_SERVER_IMPL_HPP_20120318
 
-#include <functional>
+#include <string>
 #include <memory>
 #include <thread>
 #include <mutex>
 #include <boost/asio/ip/tcp.hpp>
 #include <network/protocol/http/server/impl/socket_options_setter.hpp>
 #include <network/protocol/http/server/options.hpp>
+#include <functional>
 
 namespace network {
 namespace http {
@@ -46,5 +47,4 @@ class sync_server_impl : protected socket_options_setter {
 
 }       // namespace http
 }       // namespace network
-
 #endif  // NETWORK_PROTOCOL_HTTP_SERVER_IMPL_HPP_20120318

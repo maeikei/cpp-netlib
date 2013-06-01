@@ -63,7 +63,7 @@ void async_server_impl::stop() {
     boost::system::error_code ignored;
     acceptor_->close(ignored);
     listening_ = false;
-    service_->post(boost::bind(&async_server_impl::handle_stop, this));
+    service_->post(std::bind(&async_server_impl::handle_stop, this));
   }
 }
 
@@ -101,7 +101,7 @@ void async_server_impl::handle_accept(boost::system::error_code const& ec) {
     new_connection_.reset(
         new async_server_connection(*service_, handler_, pool_));
     acceptor_->async_accept(new_connection_->socket(),
-                            boost::bind(&async_server_impl::handle_accept,
+                            std::bind(&async_server_impl::handle_accept,
                                         this,
                                         boost::asio::placeholders::error));
   } else {
@@ -142,7 +142,7 @@ void async_server_impl::start_listening() {
   new_connection_.reset(
       new async_server_connection(*service_, handler_, pool_));
   acceptor_->async_accept(new_connection_->socket(),
-                          boost::bind(&async_server_impl::handle_accept,
+                          std::bind(&async_server_impl::handle_accept,
                                       this,
                                       boost::asio::placeholders::error));
   listening_ = true;

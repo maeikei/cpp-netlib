@@ -80,5 +80,5 @@ class server_options {
 }       // namespace http
 
 }       // namespace network
-
+#include <network/protocol/http/server/options.ipp>
 #endif  // NETWORK_PROTOCOL_HTTP_SERVER_OPTIONS_HPP_20120318

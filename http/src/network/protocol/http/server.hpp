@@ -10,7 +10,7 @@
 #ifndef NETWORK_HTTP_SERVER_HPP_
 #define NETWORK_HTTP_SERVER_HPP_
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace network {
     namespace concurrency {
@@ -62,7 +62,7 @@ template <class AsyncHandler> class async_server {
   ~async_server();
 
   typedef http::request request;
-  typedef boost::shared_ptr<async_server_connection> connection_ptr;
+  typedef std::shared_ptr<async_server_connection> connection_ptr;
  private:
   async_server_impl* pimpl_;
   async_server(async_server const& other);      // = delete

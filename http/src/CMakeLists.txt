@@ -34,6 +34,8 @@ elseif (${CMAKE_CXX_COMPILER_ID} MATCHES Clang)
 endif()
 
 set(CPP-NETLIB_HTTP_MESSAGE_SRCS
+#  ${CMAKE_CURRENT_SOURCE_DIR}/http/server_async_impl.cpp
+#  ${CMAKE_CURRENT_SOURCE_DIR}/http/server_sync_impl.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/http/request.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/http/response.cpp)
 if(NOT CPP-NETLIB_BUILD_SINGLE_LIB)
